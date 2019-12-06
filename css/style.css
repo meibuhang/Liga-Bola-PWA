@@ -1,0 +1,212 @@
+html,body{font-family: Verdana, Geneva, Tahoma, sans-serif;}
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+.main{
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cards_item {
+  display: flex;
+  flex-direction: column;
+  padding: 0.7rem;
+  margin: auto;
+  min-width: 270px;
+}
+
+@media (min-width: 40rem) {
+  .cards_item {
+    width: 50%;
+  }
+}
+
+@media (min-width: 56rem) {
+  .cards_item {
+    width: 33.3333%;
+  }
+}
+
+
+.card_content {
+  padding: 1rem;
+}
+
+.card_title {
+  color: #fff;
+  background: #4372f3;
+  font-size: 1.1rem;
+  font-weight:bold;
+  text-align: center;
+  padding:20px;
+}
+
+.card_text {
+  color: gray;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;    
+  font-weight: 400;
+}
+.card_image{
+  width: 100%;
+  margin: 0px;
+}
+#line{
+  padding:15px;
+  border-bottom:2px solid #ccc ;
+}
+.label{
+  font:#ccc;
+ font-weight:bold;
+ display: inline-block;
+}
+.value{
+ font:#ccc;
+ position:relative;
+ display: inline-block;
+}
+.head_detail{
+  width:100%;
+  padding:15px;
+  text-align: center;
+  background:#4372f3;
+  color: #fff;
+}
+#title {
+  display: block;
+  position: relative;
+  width: 100%;
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+#title::before, #title::after {
+  content: '';
+  display: block;
+  width: 45%;
+  border-bottom: 2px solid #99C24D;
+  margin: 0 auto;
+  margin-top: 0.2em;
+}
+
+#title::before {
+  margin-bottom: 0.2em;
+  width: 60%;
+}
+
+#teams-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.flexbox-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 35.55555%;
+}
+
+.name {
+  font-size: 1.2em;
+}
+
+#date-of-match {
+  width: 100%;
+  text-align: center;
+  color : #8b5206;
+}
+
+#time-of-match {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 0.2em;
+  margin-top: -0.6em;
+}
+
+#awayTeam {
+  color:red;
+}
+#homeTeam {
+  color:blue;
+}
+
+.team-container {
+  margin: 20px auto;
+ width: 80%;
+}
+
+.team-card {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 5px 10px #ccc;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
+.team-card:hover {
+  box-shadow: 0px 10px 40px #ccc; 
+}
+
+
+.team-card__content {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  padding: 0 18px;
+}
+
+section {
+  display: block;
+}
+
+
+.teamTitle {
+  font-size: 15px;
+  font-weight:bold;
+}
+
+.teamDesc {
+  font-size: 13px;
+  color: #414141;
+}
+
+
+.team-card__content p {
+  flex: 1 0 auto;
+  font-size: 16px;
+  margin-bottom: 18px;
+}
+
+.team-card__actions {
+  padding: 18px;
+}
+
+.team-card__actions-button {
+  background: #4372f3;
+  border-radius: 5px;
+  box-shadow: 0px 3px 10px #ccc; 
+  border: none; /* For <button> */
+  color: #fff;
+  cursor: pointer; /* For <button> */
+  display: inline-block;
+  font: 18px/1.7222 "Montserrat", sans-serif;
+  padding: 8px 18px;
+  text-align: center;
+  text-decoration: none;
+}
