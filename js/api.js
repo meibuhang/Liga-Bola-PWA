@@ -238,8 +238,7 @@ console.log(err);
     // let just showing 10 data on page
     data.matches.slice(0, 5).forEach(data => {
       matchesHTML += `
-      
-       <div class="card">
+      <div class="card">
         <div class="card-content">
          <div id="title">MATCH </div>
            <div id="teams-container">
@@ -248,7 +247,7 @@ console.log(err);
                ${data.homeTeam.name}
                 </div>
               </div>
-              <div class="flexbox-items" >
+              <div class="flexbox-items">
                  <div id="time-of-match">
                  ${new Date(data.utcDate).toLocaleString("en-id",{
                   hour: "2-digit",
@@ -287,48 +286,48 @@ async function getTeamById() {
       const data = await res.json();
       let TeamHTML = `
       <div class="team-container">
-      <div class="team-card">
+       <div class="team-card">
         <div class="team-card__content">
-        <div class="head_detail"><h5> Detail Team </h5></div>
-        <div id="line">
-          <div class="label">Team Name :</div>
-          <div class="value"><b>${data.name}</b> ( ${data.shortName} )</div>
-        </div>
-        <div id="line">
-        <div class="label">Area :</div>
-        <div class="value">${data.area.name}</div>
-      </div>
-      <div id="line">
-        <div class="label">Address : </div>
-        <div class="value">${data.address}</div>
-      </div>
-      <div id="line">
-        <div class="label">Phone : </div>
+         <div class="head_detail"><h5> Detail Team </h5></div>
+          <div id="line">
+            <div class="label">Team Name :</div>
+             <div class="value"><b>${data.name}</b> ( ${data.shortName} )</div>
+              </div>
+                <div id="line">
+                  <div class="label">Area :</div>
+                   <div class="value">${data.area.name}</div>
+                   </div>
+                   <div id="line">
+                <div class="label">Address : </div>
+              <div class="value">${data.address}</div>
+             </div>
+            <div id="line">
+          <div class="label">Phone : </div>
         <div class="value">${data.phone}</div>
       </div>
-      <div id="line">
-        <div class="label">Email : </div>
-        <div class="value">${data.email}</div>
-      </div>
-      <div id="line">
-        <div class="label">Website : </div>
-        <div class="value">${data.website}</div>
-      </div>
-      <div id="line">
-      <div class="label">Founded : </div>
-      <div class="value">${data.founded}</div>
-      </div>
-      <div id="line">
-      <div class="label">Club Colors : </div>
-      <div class="value">${data.clubColors}</div>
-      </div>
-        </div>
-        <div class="team-card__actions">
-        <div id="addtoFav" class="team-card__actions-button">Add to Favorite</div>
-        </div>
-      </div>
-    </div>
-  `;
+        <div id="line">
+          <div class="label">Email : </div>
+            <div class="value">${data.email}</div>
+              </div>
+                <div id="line">
+                  <div class="label">Website : </div>
+                    <div class="value">${data.website}</div>
+                      </div>
+                        <div id="line">
+                          <div class="label">Founded : </div>
+                            <div class="value">${data.founded}</div>
+                              </div>
+                            <div id="line">
+                          <div class="label">Club Colors : </div>
+                        <div class="value">${data.clubColors}</div>
+                      </div>
+                    </div>
+                  <div class="team-card__actions">
+                <div id="MyFav" class="actions-button">Add to Favorite</div>
+              </div>
+            </div>
+          </div>
+        `;
       document.getElementById("body-content").innerHTML = TeamHTML;
     }
 
@@ -336,49 +335,49 @@ async function getTeamById() {
   const data = await datas.json();
   let TeamHTML = `
   <div class="team-container">
-    <div class="team-card">
-      <div class="team-card__content">
-      <div class="head_detail"><h5> Detail Team </h5></div>
-      <div id="line">
-        <div class="label">Team Name :</div>
-        <div class="value"><b>${data.name}</b> ( ${data.shortName} )</div>
+       <div class="team-card">
+        <div class="team-card__content">
+          <div class="head_detail"><h5> Detail Team </h5></div>
+          <div id="line">
+            <div class="label">Team Name :</div>
+             <div class="value"><b>${data.name}</b> ( ${data.shortName} )</div>
+              </div>
+                <div id="line">
+                  <div class="label">Area :</div>
+                   <div class="value">${data.area.name}</div>
+                   </div>
+                   <div id="line">
+                <div class="label">Address : </div>
+              <div class="value">${data.address}</div>
+             </div>
+            <div id="line">
+          <div class="label">Phone : </div>
+        <div class="value">${data.phone}</div>
       </div>
-      <div id="line">
-      <div class="label">Area :</div>
-      <div class="value">${data.area.name}</div>
-    </div>
-    <div id="line">
-      <div class="label">Address : </div>
-      <div class="value">${data.address}</div>
-    </div>
-    <div id="line">
-      <div class="label">Phone : </div>
-      <div class="value">${data.phone}</div>
-    </div>
-    <div id="line">
-      <div class="label">Email : </div>
-      <div class="value">${data.email}</div>
-    </div>
-    <div id="line">
-      <div class="label">Website : </div>
-      <div class="value">${data.website}</div>
-    </div>
-    <div id="line">
-    <div class="label">Founded : </div>
-    <div class="value">${data.founded}</div>
-    </div>
-    <div id="line">
-    <div class="label">Club Colors : </div>
-    <div class="value">${data.clubColors}</div>
-    </div>
-      </div>
-      <div class="team-card__actions">
-      <div id="addtoFav" class="team-card__actions-button">Add to Favorite</div>
-      </div>
-    </div>
-  </div>
-`;
-  document.getElementById("body-content").innerHTML = TeamHTML;
+        <div id="line">
+          <div class="label">Email : </div>
+            <div class="value">${data.email}</div>
+              </div>
+                <div id="line">
+                  <div class="label">Website : </div>
+                    <div class="value">${data.website}</div>
+                      </div>
+                        <div id="line">
+                          <div class="label">Founded : </div>
+                            <div class="value">${data.founded}</div>
+                              </div>
+                            <div id="line">
+                          <div class="label">Club Colors : </div>
+                        <div class="value">${data.clubColors}</div>
+                      </div>
+                    </div>
+                  <div class="team-card__actions">
+                <div id="MyFav" class="action_button">Add to Favorite</div>
+              </div>
+            </div>
+          </div>
+        `;
+        document.getElementById("body-content").innerHTML = TeamHTML;
 }
 
 async function dataTeamIDB() {

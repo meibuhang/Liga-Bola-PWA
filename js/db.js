@@ -3,7 +3,8 @@ function db(idb) {
     if (!upgradeDb.objectStoreNames.contains("favoteam")) {
       let indexTeamFav = upgradeDb.createObjectStore("favoteam", {
         keyPath: "id"
-      });
+      },
+      );
       indexTeamFav.createIndex("namaTeam", "name", {
         unique: false
       });
@@ -41,6 +42,7 @@ function createDataFav(dataType, data) {
       id: data.id,
       name: data.name,
       shortName: data.shortName,
+      area : data.area.name,
       address: data.address,
       phone: data.phone,
       website: data.website,
@@ -95,45 +97,37 @@ function deleteDatafav(storeName, data) {
 async function getDataFav() {
   let dataFav = "";
   try {
+    
     const dbase = await db(idb);
-    const tx = await dbase.transaction("favoteam", "readonly");
+    const tx = await dbase.transaction("favoteam", "readwrite");
     const store = await tx.objectStore("favoteam");
     const data = await store.getAll();
 
     if (data.length > 0) {
-      data.map((datas, i) => {
+      data.map((datas) => {
         return (dataFav += `
-        <div class="col s12 m6 l6">
-          <div class="card">
-            <div class="card-content">
-              <div center-align>
-                <h5 class="center-align">
-                  <span class="blue-text text-darken-2">
-                    <a href="../listteam.html?id=${datas.id}">${datas.name}</a>
-                  </span>
-                </h5>
+        <div class ="team-container">
+        <div class="faveteam-card">
+            <h5> ${datas.shortName}</h5>
+                <div class="description">
+                    <div class="item">
+                     ${datas.name}
+                    </div>
+                  <div class="item">
+                ${datas.address}
               </div>
-            </div>
           </div>
-        </div>
+          <div id="MyFav" class="delete_button">Delete Favorite</div>
+      </div>
+</div>
         `);
       });
     } else {
       return (dataFav += `
-      
-      <div class="col s12 m6 l6">
-          <div class="card">
-            <div class="card-content">
-              <div center-align>
-              <h1>Kamu Tidak Memiliki Team Favorite</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      
+       <h1>Kamu Tidak Memiliki Team Favorite</h1>
+              
    `);
     }
-
     return (document.getElementById("faveteam").innerHTML = dataFav);
   } catch (e) {
     return new Error(e);

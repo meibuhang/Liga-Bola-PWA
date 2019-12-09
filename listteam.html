@@ -35,7 +35,6 @@
     ></script>
     <script src="js/materialize.min.js"></script>
     <script src="js/api.js"></script>
-    <script src="js/nav.js"></script>
     <script src="js/idb.js"></script>
     <script src="js/db.js"></script>
 
@@ -50,7 +49,6 @@
           console.error("Register service worker gagal", err);
         }
       }
-
       if (!("serviceWorker" in navigator)) {
         console.log("Service Worker Tidak didukung browser");
       } else {
@@ -60,19 +58,17 @@
       document.addEventListener("DOMContentLoaded", function() {
         let page = window.location.hash.substr(1);
       });
-
       document.addEventListener("DOMContentLoaded", async function() {
         console.log(window.location);
         await getTeamById();
-
-        let btnFav = document.querySelector("#addtoFav");
+        let btnFav = document.querySelector("#MyFav");
         let urlParams = new URLSearchParams(window.location.search);
         let id = Number(urlParams.get("id"));
         let isAddtoFav = false;
         checkData("favoteam", id)
           .then(msg => {
-            btnFav.classList.remove("red");
-            btnFav.classList.add("blue-grey");
+            btnFav.classList.remove("#575757");
+            btnFav.classList.add("#aa0000");
             isFav = true;
           })
           .catch(msg => {
@@ -80,7 +76,6 @@
             btnFav.classList.add("#aa0000");
             isFav = false;
           });
-
         btnFav.addEventListener("click", async function() {
           if (isFav) {
             deleteDatafav("favoteam", id);
@@ -97,7 +92,6 @@
           }
         });
       });
-
       
     </script>
   </body>
