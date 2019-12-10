@@ -3,8 +3,7 @@ function db(idb) {
     if (!upgradeDb.objectStoreNames.contains("favoteam")) {
       let indexTeamFav = upgradeDb.createObjectStore("favoteam", {
         keyPath: "id"
-      },
-      );
+      });
       indexTeamFav.createIndex("namaTeam", "name", {
         unique: false
       });
@@ -42,7 +41,7 @@ function createDataFav(dataType, data) {
       id: data.id,
       name: data.name,
       shortName: data.shortName,
-      area : data.area.name,
+      area: data.area.name,
       address: data.address,
       phone: data.phone,
       website: data.website,
@@ -96,8 +95,8 @@ function deleteDatafav(storeName, data) {
 
 async function getDataFav() {
   let dataFav = "";
+  
   try {
-    
     const dbase = await db(idb);
     const tx = await dbase.transaction("favoteam", "readwrite");
     const store = await tx.objectStore("favoteam");
@@ -106,8 +105,8 @@ async function getDataFav() {
     if (data.length > 0) {
       data.map((datas) => {
         return (dataFav += `
-        <div class ="team-container">
-        <div class="faveteam-card">
+        <div class="team-container team-container-${datas.id}">
+          <div class="faveteam-card">
             <h5> ${datas.shortName}</h5>
                 <div class="description">
                     <div class="item">
@@ -117,18 +116,35 @@ async function getDataFav() {
                 ${datas.address}
               </div>
           </div>
-          <div id="MyFav" class="delete_button">Delete Favorite</div>
-      </div>
-</div>
+          <button id="MyFav" data-id="${datas.id}" class="delete_button">Delete Favorite</button>
+          </div>
+        </div>
         `);
       });
     } else {
-      return (dataFav += `
-       <h1>Kamu Tidak Memiliki Team Favorite</h1>
-              
-   `);
+       dataFav += `
+            <h4 class="sorry">Sorry..<br/>
+            You don't have a favorite team :(</h4>
+
+        `;
+        return (document.getElementById("faveteam").innerHTML = dataFav);
     }
-    return (document.getElementById("faveteam").innerHTML = dataFav);
+    document.getElementById("faveteam").innerHTML = dataFav;
+
+    var buttons = document.querySelectorAll('.delete_button')
+
+    for (var i = 0; i < buttons.length; i += 1) {
+      var button = buttons[i];
+
+      button.addEventListener('click', function (e) {
+        var id = Number(e.target.dataset.id);
+        deleteDatafav('favoteam', id)
+          .then(function () {
+              var teamContainer = document.querySelector('.team-container-' + id)
+              teamContainer.remove();
+          });
+      });
+    }
   } catch (e) {
     return new Error(e);
   }

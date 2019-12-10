@@ -157,7 +157,6 @@ async function getKlasemen() {
                 <div class="label">GD : </div>
                 <div class="value"> ${dataTeam.goalDifference} </div>
                 </div>
-               
                 <a href="../listteam.html?id=${dataTeam.team.id}" class="btn btn-default"> Detail Team </a>
                 </div>
               </div>
@@ -167,7 +166,7 @@ async function getKlasemen() {
     klasmenHTML += `
     <div class="main">
     <ul class="cards">
-              ${TeamHTML}
+      ${TeamHTML}
   </ul>
   </div>
    `;
@@ -323,7 +322,7 @@ async function getTeamById() {
                       </div>
                     </div>
                   <div class="team-card__actions">
-                <div id="MyFav" class="actions-button">Add to Favorite</div>
+                <div id="MyFav" class="actions-button">Favorite</div>
               </div>
             </div>
           </div>

@@ -64,32 +64,14 @@
         let btnFav = document.querySelector("#MyFav");
         let urlParams = new URLSearchParams(window.location.search);
         let id = Number(urlParams.get("id"));
-        let isAddtoFav = false;
         checkData("favoteam", id)
-          .then(msg => {
-            btnFav.classList.remove("#575757");
-            btnFav.classList.add("#aa0000");
-            isFav = true;
-          })
-          .catch(msg => {
-            btnFav.classList.remove("#575757");
-            btnFav.classList.add("#aa0000");
-            isFav = false;
-          });
         btnFav.addEventListener("click", async function() {
-          if (isFav) {
-            deleteDatafav("favoteam", id);
-            btnFav.classList.remove("#575757");
-            btnFav.classList.add("#aa0000");
-            isFav = false;
-          } else {
             const res = await dataTeamIDB();
             const data = await res;
             createDataFav("team", data);
             btnFav.classList.remove("#aa0000");
             btnFav.classList.add("#575757");
             isFav = true;
-          }
         });
       });
       

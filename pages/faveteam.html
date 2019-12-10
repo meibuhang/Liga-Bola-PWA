@@ -1,1 +1,14 @@
 <div id="faveteam"></div>
+<script>
+document.addEventListener("DOMContentLoaded", async function() {
+        console.log(window.location);
+        await getTeamById();
+        let btnFav = document.querySelector("#MyFav");
+        let urlParams = new URLSearchParams(window.location.search);
+        let id = Number(urlParams.get("id"));
+        checkData("favoteam", id)
+        btnFav.addEventListener("click", async function() {
+            deleteDatafav("favoteam", id)
+        });
+      });
+      </script>
