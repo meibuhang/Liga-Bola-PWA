@@ -9,7 +9,6 @@ function db(idb) {
       });
     }
   });
-
   return dbPromise;
 }
 
@@ -22,11 +21,7 @@ function checkData(storeName, id) {
         return store.get(id);
       })
       .then(function(data) {
-        if (data !== undefined) {
-          resolve("data favorit");
-        } else {
-          reject("bukan data favorit");
-        }
+        resolve(data);
       });
   });
 }
@@ -34,7 +29,6 @@ function checkData(storeName, id) {
 function createDataFav(dataType, data) {
   var storeName = "";
   var dataToCreate = {};
-
   if (dataType === "team") {
     storeName = "favoteam";
     dataToCreate = {
@@ -50,13 +44,11 @@ function createDataFav(dataType, data) {
       clubColors: data.clubColors
     };
   }
-
   console.log("data" + dataToCreate);
   db(idb)
     .then(db => {
       const tx = db.transaction(storeName, "readwrite");
       tx.objectStore(storeName).put(dataToCreate);
-
       return tx.complete;
     })
     .then(function() {
@@ -72,7 +64,7 @@ function createDataFav(dataType, data) {
 }
 
 function deleteDatafav(storeName, data) {
-  db(idb)
+  return db(idb)
     .then(function(db) {
       var tx = db.transaction(storeName, "readwrite");
       var store = tx.objectStore(storeName);
@@ -95,15 +87,13 @@ function deleteDatafav(storeName, data) {
 
 async function getDataFav() {
   let dataFav = "";
-  
   try {
     const dbase = await db(idb);
     const tx = await dbase.transaction("favoteam", "readwrite");
     const store = await tx.objectStore("favoteam");
     const data = await store.getAll();
-
     if (data.length > 0) {
-      data.map((datas) => {
+      data.map(datas => {
         return (dataFav += `
         <div class="team-container team-container-${datas.id}">
           <div class="faveteam-card">
@@ -122,27 +112,22 @@ async function getDataFav() {
         `);
       });
     } else {
-       dataFav += `
-            <h4 class="sorry">Sorry..<br/>
-            You don't have a favorite team :(</h4>
-
+      dataFav += `
+      <h4 class="sorry">Sorry..<br/>
+      You don't have a favorite team :(</h4>
         `;
-        return (document.getElementById("faveteam").innerHTML = dataFav);
+      return (document.getElementById("faveteam").innerHTML = dataFav);
     }
     document.getElementById("faveteam").innerHTML = dataFav;
-
-    var buttons = document.querySelectorAll('.delete_button')
-
+    var buttons = document.querySelectorAll(".delete_button");
     for (var i = 0; i < buttons.length; i += 1) {
       var button = buttons[i];
-
-      button.addEventListener('click', function (e) {
+      button.addEventListener("click", function(e) {
         var id = Number(e.target.dataset.id);
-        deleteDatafav('favoteam', id)
-          .then(function () {
-              var teamContainer = document.querySelector('.team-container-' + id)
-              teamContainer.remove();
-          });
+        deleteDatafav("favoteam", id).then(function() {
+          var teamContainer = document.querySelector(".team-container-" + id);
+          teamContainer.remove();
+        });
       });
     }
   } catch (e) {

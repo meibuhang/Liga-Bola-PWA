@@ -8,23 +8,27 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="manifest" href="manifest.json" />
     <link
-    href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet"
-  />
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <title>SoccerApp</title>
   </head>
   <body>
-      <!--Navigasi -->
-      <nav class="blue darken-3" role="navigation">
-          <div class="nav-wrapper container">
-            <a href="#" class="brand-logo" id="logo-container">Liga Bola</a>
-            <a href="./index.html/#home" class="sidenav-trigger" data-target="nav-mobile">
-              <i class="material-icons">arrow_back</i>
-            </a>
-            <ul class="topnav right hide-on-med-and-down"></ul>
-            <ul class="sidenav" id="nav-mobile"></ul>
-          </div>
-        </nav>
+    <!--Navigasi -->
+    <nav class="blue darken-3" role="navigation">
+      <div class="nav-wrapper container">
+        <a href="#" class="brand-logo" id="logo-container">Liga Bola</a>
+        <a
+          href="./index.html/#home"
+          class="sidenav-trigger"
+          data-target="nav-mobile"
+        >
+          <i class="material-icons">arrow_back</i>
+        </a>
+        <ul class="topnav right hide-on-med-and-down"></ul>
+        <ul class="sidenav" id="nav-mobile"></ul>
+      </div>
+    </nav>
     <!-- Akhir Navigasi -->
 
     <div class="container" id="body-content"></div>
@@ -42,7 +46,9 @@
       // Register Service Worker
       async function registerServiceWorker() {
         try {
-          const register = await navigator.serviceWorker.register("/service-worker.js");
+          const register = await navigator.serviceWorker.register(
+            "/service-worker.js"
+          );
           console.log("Register service worker berhasil");
           return await register;
         } catch (err) {
@@ -54,7 +60,7 @@
       } else {
         registerServiceWorker();
       }
-     
+
       document.addEventListener("DOMContentLoaded", function() {
         let page = window.location.hash.substr(1);
       });
@@ -64,17 +70,15 @@
         let btnFav = document.querySelector("#MyFav");
         let urlParams = new URLSearchParams(window.location.search);
         let id = Number(urlParams.get("id"));
-        checkData("favoteam", id)
+        checkData("favoteam", id);
         btnFav.addEventListener("click", async function() {
-            const res = await dataTeamIDB();
-            const data = await res;
-            createDataFav("team", data);
-            btnFav.classList.remove("#aa0000");
-            btnFav.classList.add("#575757");
-            isFav = true;
+          const res = await dataTeamIDB();
+          const data = await res;
+          createDataFav("team", data);
+          btnFav.classList.add("#575757");
+          isFav = true;
         });
       });
-      
     </script>
   </body>
 </html>
