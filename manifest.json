@@ -1,17 +1,22 @@
 {
-  "name" : "Liga Bola App",
-  "short_name" : "Liga Bola App",
-  "description" : "submission2 PWA",
-  "start_url" : "/index.html",
-  "display" : "standalone",
-  "background_color" : "#02319e",
-  "theme_color" : "#02319e",
-  "icons" : [
-      {
-        "src": "/icon.png",
-        "sizes": "144x144",
-        "type": "image/png"
-      }
+  "name": "Liga Bola App",
+  "short_name": "Liga Bola App",
+  "description": "submission2 PWA",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#02319e",
+  "theme_color": "#02319e",
+  "icons": [
+    {
+      "src": "./icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./customicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
   ],
   "gcm_sender_id": "414421561951",
   "splash_pages": null
