@@ -35,8 +35,12 @@ document.addEventListener("DOMContentLoaded", function() {
   let page = window.location.hash.substr(1);
   let path = window.location.pathname.substr(1);
 
-  if ((page === "" && path === "") || (page === "#" && path === "")) {
-    page = "home";
+  if((page=="")||(page=="#")||(page=="home")){
+    getKlasemen();
+  }else if(page=="jadwal"){
+    getMatch();
+  }else if(page=="faveteam"){
+    getDataFav();
   }
   loadPage(page);
   function loadPage(page) {

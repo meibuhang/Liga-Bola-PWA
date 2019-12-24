@@ -2,6 +2,7 @@ const CACHE_NAME = "ligabola";
 let urlsToCache = [
   "/",
   "/icon.png",
+  "/customicon.png",
   "/manifest.json",
   "/index.html",
   "/nav.html",
@@ -22,14 +23,13 @@ let urlsToCache = [
 ];
 
 // Install Service Worker
-self.addEventListener("install", event => {
+self.addEventListener('install',function(event){
   event.waitUntil(
-    (async () => {
-      const cache = await caches.open(CACHE_NAME);
-      return cache.addAll(urlsToCache);
-    })()
+    caches.open(CACHE_NAME).then(function(cache){
+      return cache.addAll(urlsToCache)
+    })
   );
-});
+})
 
 self.addEventListener("fetch", event => {
   let base_url = "https://api.football-data.org/v2";
@@ -55,22 +55,20 @@ self.addEventListener("fetch", event => {
 });
 
 // remove old cache
-self.addEventListener("activate", event => {
+self.addEventListener("activate", function(event){
   event.waitUntil(
-    (async () => {
-      const cacheNames = await caches.keys();
-      return await Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            console.log(`Service Worker: cache ${cacheName} dihapus`);
+    caches.keys().then(function(cacheNames){
+      return Promise.all(
+        cacheNames.map(function(cacheName){
+          if(cacheName != CACHE_NAME){
+            console.log("ServiceWoreken : cache " + cacheName + "deleted");
             return caches.delete(cacheName);
           }
         })
-      );
-    })()
-  );
-});
-
+      )
+    })
+  )
+})
 // Add Push Notification
 self.addEventListener("push", function(event) {
   let body;
