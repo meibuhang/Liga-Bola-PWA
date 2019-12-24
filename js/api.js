@@ -46,7 +46,7 @@ async function getKlasemen() {
             <li class="cards_item">
             <div class="card">
               <div class="card_image">
-              <img src=${dataTeam.team.crestUrl}>
+              <img src=${dataTeam.team.crestUrl.replace(/^http:\/\//i, 'https://')}>
               </div>
               <div class="card_content">
               <div class="card_title">${dataTeam.team.name}</div>
@@ -117,7 +117,7 @@ async function getKlasemen() {
                <li class="cards_item">
               <div class="card">
                 <div class="card_image">
-                <img src=${dataTeam.team.crestUrl}>
+                <img src=${dataTeam.team.crestUrl.replace(/^http:\/\//i, 'https://')}>
                 </div>
                 <div class="card_content">
                 <div class="card_title">${dataTeam.team.name}</div>
